@@ -1,0 +1,12 @@
+<windows>
+<texture>
+<source>res/background.png</source>
+<x>0</x>
+<y>0</y>
+</texture>
+<texture>
+<source>res/image.png</source>
+<x>50</x>
+<y>50</y>
+</texture>
+</windows>
