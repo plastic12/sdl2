@@ -4,16 +4,19 @@
 #include "cleanup.h"
 #include <string>
 #include "utility.h"
+#include "rapidxml.hpp"  
+#include "rapidxml_utils.hpp"  
+#include "rapidxml_print.hpp"  
 
 using namespace std;
 
 class GraphicLib
 {
 	private:
-	vector<SDL_Texture *> lib;
+	static vector<SDL_Texture *> lib;
 	public:
-	void add(const std::string &file, SDL_Renderer *ren);
-	SDL_Texture* get(int index);
+	static void add(const std::string &file, SDL_Renderer *ren);
+	static SDL_Texture* get(int index);
 };
 
 class Layer

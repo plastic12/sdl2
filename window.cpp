@@ -1,6 +1,7 @@
 #include "window.h"
 
 
+vector<SDL_Texture *> GraphicLib::lib;
 
 void GraphicLib::add(const std::string &file, SDL_Renderer *ren)
 {
