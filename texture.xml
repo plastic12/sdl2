@@ -1,11 +1,11 @@
 <windows>
 <texture>
-<source>res/background.png</source>
+<source_id>0</source_id>
 <x>0</x>
 <y>0</y>
 </texture>
 <texture>
-<source>res/image.png</source>
+<source_id>1</source_id>
 <x>50</x>
 <y>50</y>
 </texture>

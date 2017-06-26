@@ -39,6 +39,7 @@ int main(int argc,char** argv)
 		SDL_Quit();
 		return 1;
 	}
+	GraphicLib::init(renderer);
 	//xml analysis
 	file<> xmlFile("texture.xml");
 	xml_document<> doc;    // character type defaults to char
@@ -47,14 +48,14 @@ int main(int argc,char** argv)
 	Window w;
 	xml_node<>*texture=root->first_node();
 	//Layer
-	Layer l0(texture->first_node("source")->value(),
+	Layer l0(stoi(texture->first_node("source_id")->value()),
 	renderer,
 	stoi(texture->first_node("x")->value()),
 	stoi(texture->first_node("y")->value()));
 	w.add(&l0);
 	
 	texture=texture->next_sibling();
-	Layer l1(texture->first_node("source")->value(),
+	Layer l1(stoi(texture->first_node("source_id")->value()),
 	renderer,
 	stoi(texture->first_node("x")->value()),
 	stoi(texture->first_node("y")->value()));

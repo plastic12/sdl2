@@ -2,6 +2,7 @@
 
 
 vector<SDL_Texture *> GraphicLib::lib;
+const string GraphicLib::init_file="graphics.xml";
 
 void GraphicLib::add(const std::string &file, SDL_Renderer *ren)
 {
@@ -14,11 +15,25 @@ SDL_Texture* GraphicLib::get(int index)
 	else
 		return lib[index];
 }
-Layer::Layer(const std::string &file, SDL_Renderer *ren,int x,int y)
+
+void GraphicLib::init(SDL_Renderer *ren)
+{
+	file<> xmlFile(init_file.c_str());
+	xml_document<> doc;    // character type defaults to char
+	doc.parse<0>(xmlFile.data());    // 0 means default parse flags
+	xml_node <>*root=doc.first_node();
+	for(xml_node<>*texture=root->first_node();texture;texture=texture->next_sibling())
+	{
+		string filename=texture->first_node("source")->value();
+		add(filename,ren);
+	}
+}
+
+Layer::Layer(int source_id, SDL_Renderer *ren,int x,int y)
 {
 	//std::cout<<file<<'\n';
 	//std::cout<<ren<<'\n';
-	tex=loadTexture(file,ren);
+	tex=GraphicLib::get(source_id);
 	//std::cout<<tex<<'\n';
 	if (tex == nullptr){
 		SDL_Quit();
