@@ -1,6 +1,18 @@
 #include "window.h"
 
 
+
+void GraphicLib::add(const std::string &file, SDL_Renderer *ren)
+{
+	lib.push_back(loadTexture(file,ren));
+}
+SDL_Texture* GraphicLib::get(int index)
+{
+	if(index<0||index>lib.size())
+		return NULL;
+	else
+		return lib[index];
+}
 Layer::Layer(const std::string &file, SDL_Renderer *ren,int x,int y)
 {
 	//std::cout<<file<<'\n';

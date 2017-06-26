@@ -5,7 +5,7 @@ SDL_INCLUDE = -IC:/Tool/Library/SDL2-devel-2.0.5-mingw/SDL2-2.0.5/i686-w64-mingw
 # If your compiler is a bit older you may need to change -std=c++11 to -std=c++0x
 CXXFLAGS = -Wall -c -std=c++11 $(SDL_INCLUDE)
 LDFLAGS = -lmingw32 -mwindows -mconsole $(SDL_LIB)
-EXE = output.exe
+EXE = release/output.exe
 
 all: $(EXE)
 

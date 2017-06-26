@@ -7,6 +7,15 @@
 
 using namespace std;
 
+class GraphicLib
+{
+	private:
+	vector<SDL_Texture *> lib;
+	public:
+	void add(const std::string &file, SDL_Renderer *ren);
+	SDL_Texture* get(int index);
+};
+
 class Layer
 {
 	private:

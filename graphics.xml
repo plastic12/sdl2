@@ -1,3 +1,8 @@
 <graphics>
-<source></source>
+<texture>
+<source>res/background.png</source>
+</texture>
+<texture>
+<source>res/image.png</source>
+</texture>
 </graphics>
