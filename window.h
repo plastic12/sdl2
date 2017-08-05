@@ -4,12 +4,12 @@
 #include "cleanup.h"
 #include <string>
 #include "utility.h"
-#include "rapidxml.hpp"  
-#include "rapidxml_utils.hpp"  
-#include "rapidxml_print.hpp"  
+#include "rapidxml.hpp"
+#include "rapidxml_utils.hpp"
+#include "rapidxml_print.hpp"
 
 using namespace std;
-using namespace rapidxml; 
+using namespace rapidxml;
 
 class GraphicLib
 {
@@ -25,12 +25,17 @@ class GraphicLib
 class Layer
 {
 	private:
+	string name;
+	bool isRender;
 	SDL_Texture *tex;
 	int x;
 	int y;
 	public:
-	Layer(int source_id, SDL_Renderer *ren,int x,int y);
+	Layer(int source_id, SDL_Renderer *ren,int x,int y,string name);
 	void render(SDL_Renderer *ren);
+	void toggleRender();
+	bool getRender();
+	string getName();
 	~Layer();
 	SDL_Texture * getTexture();
 };
@@ -44,4 +49,9 @@ class Window
 		Window();
 		void add(Layer* l);
 		void render(SDL_Renderer *ren);
+		void render(SDL_Renderer *ren,int index);
+		string getName(int index);
+		int getSize();
+		bool getRender(int index);
+		void toggleRender(int index);
 };

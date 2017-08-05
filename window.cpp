@@ -29,8 +29,10 @@ void GraphicLib::init(SDL_Renderer *ren)
 	}
 }
 
-Layer::Layer(int source_id, SDL_Renderer *ren,int x,int y)
+Layer::Layer(int source_id, SDL_Renderer *ren,int x,int y,string name)
 {
+	isRender=true;
+	this->name=name;
 	//std::cout<<file<<'\n';
 	//std::cout<<ren<<'\n';
 	tex=GraphicLib::get(source_id);
@@ -41,13 +43,20 @@ Layer::Layer(int source_id, SDL_Renderer *ren,int x,int y)
 	this->x=x;
 	this->y=y;
 }
+
 void Layer::render(SDL_Renderer *ren)
 {
 	renderTexture(tex, ren, x, y,NULL);
 }
-
+void Layer::toggleRender()
+{
+	isRender=!isRender;
+}
+bool Layer::getRender(){return isRender;}
+string Layer::getName(){return name;}
 Layer::~Layer()
 {
+	cout<<"Layer destroy"<<endl;
 }
 SDL_Texture *Layer::getTexture(){return tex;}
 
@@ -57,10 +66,34 @@ void Window::add(Layer* l)
 {
 	layers.push_back(l);
 }
+string Window::getName(int index)
+{
+	if(index>=layers.size())
+	{
+		cout<<"index out of bound";
+		return "";
+	}
+	return layers[index]->getName();
+}
 void Window::render(SDL_Renderer *ren)
 {
 	for(int i=0;i<layers.size();i++)
 	{
-		layers[i]->render(ren);
+		if(layers[i]->getRender())
+			layers[i]->render(ren);
 	}
+}
+int Window::getSize()
+{return layers.size();}
+bool Window::getRender(int index)
+{
+	return layers[index]->getRender();
+}
+void Window::render(SDL_Renderer *ren,int index)
+{
+	layers[index]->render(ren);
+}
+void Window::toggleRender(int index)
+{
+	layers[index]->toggleRender();
 }
